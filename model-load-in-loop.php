@@ -1,4 +1,5 @@
 <?php
+
 ini_set('memory_limit', '512M');
 
 $getProductIds = function ($number) {
@@ -40,12 +41,13 @@ $exp2 = function ($productIds) {
 
 echo '<table><tr><td># of Products</td><td>Collection</td><td>Model Loop</td></tr>';
 for ($i = 10; $i <= 1000; $i = $i + 20) {
+    if ($i != 10) $n = $i - 10; else $n = $i;
     $start = microtime(true);
-    $productIds = $getProductIds($i);
+    $productIds = $getProductIds($n);
     $end = microtime(true);
 
     echo '<tr>';
-    echo '<td>' . $i . '</td>';
+    echo '<td>' . $n . '</td>';
     echo '<td>' . ($exp1($productIds) + ($end - $start)) . '</td>';
     echo '<td>' . $exp2($productIds) . '</td>';
     echo '</tr>';
